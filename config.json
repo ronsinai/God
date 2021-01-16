@@ -1,5 +1,207 @@
 {
-  "exchanges": [],
-  "queues": [],
-  "binds": []
+  "exchanges": [
+    {
+      "name": "imagings",
+      "type": "topic"
+    },
+    {
+      "name": "diagnoses",
+      "type": "direct"
+    },
+    {
+      "name": "diagnoses-error",
+      "type": "direct"
+    },
+    {
+      "name": "discharges",
+      "type": "fanout"
+    },
+    {
+      "name": "discharges-delayed",
+      "type": "x-delayed-message",
+      "options": {
+        "arguments": {
+          "x-delayed-type": "fanout"
+        }
+      }
+    }
+  ],
+  "queues": [
+    {
+      "name": "imagings"
+    },
+    {
+      "name": "imagings-delayed"
+    },
+    {
+      "name": "fracture",
+      "options": {
+        "arguments": {
+          "x-dead-letter-exchange": "diagnoses-error",
+          "x-dead-letter-routing-key": "fracture"
+        }
+      }
+    },
+    {
+      "name": "infection",
+      "options": {
+        "arguments": {
+          "x-dead-letter-exchange": "diagnoses-error",
+          "x-dead-letter-routing-key": "infection"
+        }
+      }
+    },
+    {
+      "name": "pneumonia",
+      "options": {
+        "arguments": {
+          "x-dead-letter-exchange": "diagnoses-error",
+          "x-dead-letter-routing-key": "pneumonia"
+        }
+      }
+    },
+    {
+      "name": "multiple_sclerosis",
+      "options": {
+        "arguments": {
+          "x-dead-letter-exchange": "diagnoses-error",
+          "x-dead-letter-routing-key": "multiple_sclerosis"
+        }
+      }
+    },
+    {
+      "name": "syringomyelia",
+      "options": {
+        "arguments": {
+          "x-dead-letter-exchange": "diagnoses-error",
+          "x-dead-letter-routing-key": "syringomyelia"
+        }
+      }
+    },
+    {
+      "name": "stroke",
+      "options": {
+        "arguments": {
+          "x-dead-letter-exchange": "diagnoses-error",
+          "x-dead-letter-routing-key": "stroke"
+        }
+      }
+    },
+    {
+      "name": "tumor",
+      "options": {
+        "arguments": {
+          "x-dead-letter-exchange": "diagnoses-error",
+          "x-dead-letter-routing-key": "tumor"
+        }
+      }
+    },
+    {
+      "name": "gallbladder_disease",
+      "options": {
+        "arguments": {
+          "x-dead-letter-exchange": "diagnoses-error",
+          "x-dead-letter-routing-key": "gallbladder_disease"
+        }
+      }
+    },
+    {
+      "name": "prostate_problem",
+      "options": {
+        "arguments": {
+          "x-dead-letter-exchange": "diagnoses-error",
+          "x-dead-letter-routing-key": "prostate_problem"
+        }
+      }
+    },
+    {
+      "name": "synovitis",
+      "options": {
+        "arguments": {
+          "x-dead-letter-exchange": "diagnoses-error",
+          "x-dead-letter-routing-key": "synovitis"
+        }
+      }
+    },
+    {
+      "name": "diagnoses"
+    },
+    {
+      "name": "diagnoses-critical"
+    },
+    {
+      "name": "diagnoses-error"
+    },
+    {
+      "name": "diagnoses-critical-error"
+    },
+    {
+      "name": "discharges"
+    },
+    {
+      "name": "discharges-delayed"
+    }
+  ],
+  "binds": [
+    {
+      "queue": "imagings",
+      "exchange": "imagings",
+      "patterns": "#"
+    },
+    {
+      "queue": "imagings-delayed",
+      "exchange": "imagings",
+      "patterns": "#"
+    },
+    {
+      "queue": "syringomyelia",
+      "exchange": "imagings",
+      "patterns": "MRI.spine.*"
+    },
+    {
+      "queue": "stroke",
+      "exchange": "imagings",
+      "patterns": "MRI.spine.*"
+    },
+    {
+      "queue": "tumor",
+      "exchange": "imagings",
+      "patterns": "MRI.spine.*"
+    },
+    {
+      "queue": "multiple_sclerosis",
+      "exchange": "imagings",
+      "patterns": "MRI.spine.*"
+    },
+    {
+      "queue": "diagnoses",
+      "exchange": "diagnoses",
+      "patterns": "fracture infection pneumonia multiple_sclerosis syringomyelia stroke tumor gallbladder_disease prostate_problem synovitis"
+    },
+    {
+      "queue": "diagnoses-critical",
+      "exchange": "diagnoses",
+      "patterns": "infection pneumonia multiple_sclerosis syringomyelia stroke tumor prostate_problem"
+    },
+    {
+      "queue": "diagnoses-error",
+      "exchange": "diagnoses-error",
+      "patterns": "fracture infection pneumonia multiple_sclerosis syringomyelia stroke tumor gallbladder_disease prostate_problem synovitis"
+    },
+    {
+      "queue": "diagnoses-critical-error",
+      "exchange": "diagnoses-error",
+      "patterns": "infection pneumonia multiple_sclerosis syringomyelia stroke tumor prostate_problem"
+    },
+    {
+      "queue": "discharges",
+      "exchange": "discharges",
+      "patterns": ""
+    },
+    {
+      "queue": "discharges-delayed",
+      "exchange": "discharges-delayed",
+      "patterns": ""
+    }
+  ]
 }
