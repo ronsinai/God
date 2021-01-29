@@ -136,6 +136,9 @@
       "name": "diagnoses-critical-error"
     },
     {
+      "name": "diagnoses-manual-error"
+    },
+    {
       "name": "discharges"
     },
     {
@@ -192,6 +195,11 @@
       "queue": "diagnoses-critical-error",
       "exchange": "diagnoses-error",
       "patterns": "infection pneumonia multiple_sclerosis syringomyelia stroke tumor prostate_problem"
+    },
+    {
+      "queue": "diagnoses-manual-error",
+      "exchange": "diagnoses-error",
+      "patterns": "fracture infection pneumonia multiple_sclerosis syringomyelia stroke tumor gallbladder_disease prostate_problem synovitis"
     },
     {
       "queue": "discharges",
